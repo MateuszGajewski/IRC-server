@@ -7,9 +7,11 @@ CMakeFiles/sk.dir/main.cpp.o
  /home/arabica/IRC-server/communication.h
  /home/arabica/IRC-server/main.cpp
  /home/arabica/IRC-server/server.h
+ /home/arabica/IRC-server/user.h
 CMakeFiles/sk.dir/server.cpp.o
  /home/arabica/IRC-server/server.cpp
  /home/arabica/IRC-server/server.h
+ /home/arabica/IRC-server/user.h
 CMakeFiles/sk.dir/user.cpp.o
  /home/arabica/IRC-server/user.cpp
  /home/arabica/IRC-server/user.h

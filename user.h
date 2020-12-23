@@ -9,6 +9,8 @@
 class user {
 public:
     int fd;
+    bool to_write = false;
+    int status = 0;
 
 
 

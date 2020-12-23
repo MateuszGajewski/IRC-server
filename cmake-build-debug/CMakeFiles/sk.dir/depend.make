@@ -6,9 +6,11 @@ CMakeFiles/sk.dir/communication.cpp.o: ../communication.cpp
 CMakeFiles/sk.dir/main.cpp.o: ../communication.h
 CMakeFiles/sk.dir/main.cpp.o: ../main.cpp
 CMakeFiles/sk.dir/main.cpp.o: ../server.h
+CMakeFiles/sk.dir/main.cpp.o: ../user.h
 
 CMakeFiles/sk.dir/server.cpp.o: ../server.cpp
 CMakeFiles/sk.dir/server.cpp.o: ../server.h
+CMakeFiles/sk.dir/server.cpp.o: ../user.h
 
 CMakeFiles/sk.dir/user.cpp.o: ../user.cpp
 CMakeFiles/sk.dir/user.cpp.o: ../user.h
