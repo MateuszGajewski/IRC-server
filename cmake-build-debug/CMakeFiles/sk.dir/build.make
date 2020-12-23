@@ -63,10 +63,10 @@ RM = /snap/clion/137/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/arabica/CLionProjects/sk
+CMAKE_SOURCE_DIR = /home/arabica/IRC-server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/arabica/CLionProjects/sk/cmake-build-debug
+CMAKE_BINARY_DIR = /home/arabica/IRC-server/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/sk.dir/depend.make
@@ -79,55 +79,55 @@ include CMakeFiles/sk.dir/flags.make
 
 CMakeFiles/sk.dir/main.cpp.o: CMakeFiles/sk.dir/flags.make
 CMakeFiles/sk.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sk.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sk.dir/main.cpp.o -c /home/arabica/CLionProjects/sk/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arabica/IRC-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sk.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sk.dir/main.cpp.o -c /home/arabica/IRC-server/main.cpp
 
 CMakeFiles/sk.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sk.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arabica/CLionProjects/sk/main.cpp > CMakeFiles/sk.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arabica/IRC-server/main.cpp > CMakeFiles/sk.dir/main.cpp.i
 
 CMakeFiles/sk.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sk.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arabica/CLionProjects/sk/main.cpp -o CMakeFiles/sk.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arabica/IRC-server/main.cpp -o CMakeFiles/sk.dir/main.cpp.s
 
 CMakeFiles/sk.dir/communication.cpp.o: CMakeFiles/sk.dir/flags.make
 CMakeFiles/sk.dir/communication.cpp.o: ../communication.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sk.dir/communication.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sk.dir/communication.cpp.o -c /home/arabica/CLionProjects/sk/communication.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arabica/IRC-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sk.dir/communication.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sk.dir/communication.cpp.o -c /home/arabica/IRC-server/communication.cpp
 
 CMakeFiles/sk.dir/communication.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sk.dir/communication.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arabica/CLionProjects/sk/communication.cpp > CMakeFiles/sk.dir/communication.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arabica/IRC-server/communication.cpp > CMakeFiles/sk.dir/communication.cpp.i
 
 CMakeFiles/sk.dir/communication.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sk.dir/communication.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arabica/CLionProjects/sk/communication.cpp -o CMakeFiles/sk.dir/communication.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arabica/IRC-server/communication.cpp -o CMakeFiles/sk.dir/communication.cpp.s
 
 CMakeFiles/sk.dir/user.cpp.o: CMakeFiles/sk.dir/flags.make
 CMakeFiles/sk.dir/user.cpp.o: ../user.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sk.dir/user.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sk.dir/user.cpp.o -c /home/arabica/CLionProjects/sk/user.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arabica/IRC-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sk.dir/user.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sk.dir/user.cpp.o -c /home/arabica/IRC-server/user.cpp
 
 CMakeFiles/sk.dir/user.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sk.dir/user.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arabica/CLionProjects/sk/user.cpp > CMakeFiles/sk.dir/user.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arabica/IRC-server/user.cpp > CMakeFiles/sk.dir/user.cpp.i
 
 CMakeFiles/sk.dir/user.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sk.dir/user.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arabica/CLionProjects/sk/user.cpp -o CMakeFiles/sk.dir/user.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arabica/IRC-server/user.cpp -o CMakeFiles/sk.dir/user.cpp.s
 
 CMakeFiles/sk.dir/server.cpp.o: CMakeFiles/sk.dir/flags.make
 CMakeFiles/sk.dir/server.cpp.o: ../server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sk.dir/server.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sk.dir/server.cpp.o -c /home/arabica/CLionProjects/sk/server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arabica/IRC-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sk.dir/server.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sk.dir/server.cpp.o -c /home/arabica/IRC-server/server.cpp
 
 CMakeFiles/sk.dir/server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sk.dir/server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arabica/CLionProjects/sk/server.cpp > CMakeFiles/sk.dir/server.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arabica/IRC-server/server.cpp > CMakeFiles/sk.dir/server.cpp.i
 
 CMakeFiles/sk.dir/server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sk.dir/server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arabica/CLionProjects/sk/server.cpp -o CMakeFiles/sk.dir/server.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arabica/IRC-server/server.cpp -o CMakeFiles/sk.dir/server.cpp.s
 
 # Object files for target sk
 sk_OBJECTS = \
@@ -145,7 +145,7 @@ sk: CMakeFiles/sk.dir/user.cpp.o
 sk: CMakeFiles/sk.dir/server.cpp.o
 sk: CMakeFiles/sk.dir/build.make
 sk: CMakeFiles/sk.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable sk"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/arabica/IRC-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable sk"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sk.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -158,6 +158,6 @@ CMakeFiles/sk.dir/clean:
 .PHONY : CMakeFiles/sk.dir/clean
 
 CMakeFiles/sk.dir/depend:
-	cd /home/arabica/CLionProjects/sk/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/arabica/CLionProjects/sk /home/arabica/CLionProjects/sk /home/arabica/CLionProjects/sk/cmake-build-debug /home/arabica/CLionProjects/sk/cmake-build-debug /home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles/sk.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/arabica/IRC-server/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/arabica/IRC-server /home/arabica/IRC-server /home/arabica/IRC-server/cmake-build-debug /home/arabica/IRC-server/cmake-build-debug /home/arabica/IRC-server/cmake-build-debug/CMakeFiles/sk.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/sk.dir/depend
 

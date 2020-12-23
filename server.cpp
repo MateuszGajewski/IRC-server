@@ -6,7 +6,7 @@
 
 int	server::handle_clients( fd_set *fds, std::vector<int> users)
 {
-
+    int rd = 0;
     std::cout<<users.size()<<std::endl;
     for (int i = 0 ; i< users.size(); i++)
     {
@@ -14,17 +14,27 @@ int	server::handle_clients( fd_set *fds, std::vector<int> users)
         char buff[1024];
         if (FD_ISSET(users[i], fds))
         {
-            recive_msg(buff, users[i]);
-            std::cout<<buff<<std::endl;
+            rd = server::recive_msg(buff, users[i]);
+            if (rd == 0){
             close(users[i]);
+                continue;}
+            std::cout<<buff<<std::endl;
+            char ans[] = "%reply elo \n \r";
+            if (buff[0] == 'P'){continue;}
+            server::send_msg(ans, users[i]);
+            for (int i =0; i< 1024; i++){
+                buff[i] = 0;
+            }
+            //close(users[i]);
         }
+        //FD_CLR(&fds);
     }
     return (0);
 }
 
 void server::send_msg(char * buff, int cfd){
     int rc = 0;
-    while (rc<7){
+    while (buff[rc-1] != '\r'){
         rc += write(cfd, buff+rc, 1);
     }
 
@@ -72,17 +82,19 @@ int	server::accept_new_user(std::vector<int> * users, int g_socket_fd)
     std::cout<< "Incoming connection from %s"<<inet_ntoa(r_addr.sin_addr)<<std::endl;
 }
 
-void server::recive_msg(char * buff, int cfd){
+int server::recive_msg(char * buff, int cfd){
     int rc =0;
     int r = 1;
     while(r!=0){
         r = read(cfd, buff+rc, 1);
         rc+=r;
         if(*(buff+rc-1) == '\n'){
-            return;
+            std::cout<<rc<<std::endl;
+            return 1;
             break;
         }
     }
+    if (rc == 0){std::cout<<"quit"<<std::endl; return 0;}
 }
 void server::update_fdset(fd_set *fds, int *fd_max, std::vector<int> users, int g_socket_fd)
 {
@@ -99,7 +111,8 @@ void server::update_fdset(fd_set *fds, int *fd_max, std::vector<int> users, int 
 
     }
 }
-int server::begin_server(int port){
+
+[[noreturn]] int server::begin_server(int port){
 
     int			fd_max, g_socket_fd;
     std::vector<int> users;
@@ -112,6 +125,7 @@ int server::begin_server(int port){
     while (1)
     {
 
+
         server::update_fdset(&fds, &fd_max, users, g_socket_fd);
         if (select(fd_max + 1, &fds, NULL, NULL, NULL) < 0)
             std::cout<<"elo"<<std::endl;
@@ -119,5 +133,6 @@ int server::begin_server(int port){
             server::accept_new_user(&users, g_socket_fd);
         server::handle_clients(&fds, users);
     }
+    return 0;
 
 }

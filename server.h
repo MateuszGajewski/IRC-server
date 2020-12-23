@@ -26,7 +26,8 @@ class server {
 public:
     fd_set		fds;
     fd_set  fds_w;
-    int begin_server(int port);
+
+    [[noreturn]] int begin_server(int port);
 
     static int accept_new_user(std::vector<int> *users, int g_socket_fd);
 
@@ -38,7 +39,7 @@ public:
 
     static int handle_clients(fd_set *fds, std::vector<int> users);
     static void send_msg(char * buff, int cfd);
-    static void recive_msg(char * buff, int cfd);
+    static int recive_msg(char * buff, int cfd);
 
 };
 

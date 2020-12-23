@@ -16,7 +16,7 @@
 #define SK_COMMUNICATION_H
 void send_msg(char * buff, int cfd){
     int rc = 0;
-    while (rc<7){
+    while (rc<3){
         rc += write(cfd, buff+rc, 1);
         }
 

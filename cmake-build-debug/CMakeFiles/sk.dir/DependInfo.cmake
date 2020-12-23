@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/arabica/CLionProjects/sk/communication.cpp" "/home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles/sk.dir/communication.cpp.o"
-  "/home/arabica/CLionProjects/sk/main.cpp" "/home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles/sk.dir/main.cpp.o"
-  "/home/arabica/CLionProjects/sk/server.cpp" "/home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles/sk.dir/server.cpp.o"
-  "/home/arabica/CLionProjects/sk/user.cpp" "/home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles/sk.dir/user.cpp.o"
+  "/home/arabica/IRC-server/communication.cpp" "/home/arabica/IRC-server/cmake-build-debug/CMakeFiles/sk.dir/communication.cpp.o"
+  "/home/arabica/IRC-server/main.cpp" "/home/arabica/IRC-server/cmake-build-debug/CMakeFiles/sk.dir/main.cpp.o"
+  "/home/arabica/IRC-server/server.cpp" "/home/arabica/IRC-server/cmake-build-debug/CMakeFiles/sk.dir/server.cpp.o"
+  "/home/arabica/IRC-server/user.cpp" "/home/arabica/IRC-server/cmake-build-debug/CMakeFiles/sk.dir/user.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

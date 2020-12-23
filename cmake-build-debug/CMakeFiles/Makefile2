@@ -64,10 +64,10 @@ RM = /snap/clion/137/bin/cmake/linux/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/arabica/CLionProjects/sk
+CMAKE_SOURCE_DIR = /home/arabica/IRC-server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/arabica/CLionProjects/sk/cmake-build-debug
+CMAKE_BINARY_DIR = /home/arabica/IRC-server/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -94,14 +94,14 @@ clean: CMakeFiles/sk.dir/clean
 CMakeFiles/sk.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sk.dir/build.make CMakeFiles/sk.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sk.dir/build.make CMakeFiles/sk.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target sk"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arabica/IRC-server/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target sk"
 .PHONY : CMakeFiles/sk.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/sk.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arabica/IRC-server/cmake-build-debug/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/sk.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arabica/CLionProjects/sk/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arabica/IRC-server/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/sk.dir/rule
 
 # Convenience name for target.

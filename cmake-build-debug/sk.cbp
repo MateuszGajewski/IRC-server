@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/arabica/CLionProjects/sk/cmake-build-debug"/>
+				<Option working_dir="/home/arabica/IRC-server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/arabica/CLionProjects/sk/cmake-build-debug"/>
+				<Option working_dir="/home/arabica/IRC-server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/arabica/CLionProjects/sk/cmake-build-debug"/>
+				<Option working_dir="/home/arabica/IRC-server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="sk">
-				<Option output="/home/arabica/CLionProjects/sk/cmake-build-debug/sk" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/arabica/CLionProjects/sk/cmake-build-debug"/>
+				<Option output="/home/arabica/IRC-server/cmake-build-debug/sk" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/arabica/IRC-server/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -53,15 +53,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 sk"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 sk"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="sk/fast">
-				<Option output="/home/arabica/CLionProjects/sk/cmake-build-debug/sk" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/arabica/CLionProjects/sk/cmake-build-debug"/>
+				<Option output="/home/arabica/IRC-server/cmake-build-debug/sk" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/arabica/IRC-server/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -75,35 +75,35 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 sk/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/arabica/CLionProjects/sk/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 sk/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/arabica/IRC-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/arabica/CLionProjects/sk/communication.cpp">
+		<Unit filename="/home/arabica/IRC-server/communication.cpp">
 			<Option target="sk"/>
 		</Unit>
-		<Unit filename="/home/arabica/CLionProjects/sk/communication.h">
+		<Unit filename="/home/arabica/IRC-server/communication.h">
 			<Option target="sk"/>
 		</Unit>
-		<Unit filename="/home/arabica/CLionProjects/sk/main.cpp">
+		<Unit filename="/home/arabica/IRC-server/main.cpp">
 			<Option target="sk"/>
 		</Unit>
-		<Unit filename="/home/arabica/CLionProjects/sk/server.cpp">
+		<Unit filename="/home/arabica/IRC-server/server.cpp">
 			<Option target="sk"/>
 		</Unit>
-		<Unit filename="/home/arabica/CLionProjects/sk/server.h">
+		<Unit filename="/home/arabica/IRC-server/server.h">
 			<Option target="sk"/>
 		</Unit>
-		<Unit filename="/home/arabica/CLionProjects/sk/user.cpp">
+		<Unit filename="/home/arabica/IRC-server/user.cpp">
 			<Option target="sk"/>
 		</Unit>
-		<Unit filename="/home/arabica/CLionProjects/sk/user.h">
+		<Unit filename="/home/arabica/IRC-server/user.h">
 			<Option target="sk"/>
 		</Unit>
-		<Unit filename="/home/arabica/CLionProjects/sk/CMakeLists.txt">
+		<Unit filename="/home/arabica/IRC-server/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
