@@ -1,9 +1,53 @@
 //
 // Created by arabica on 16.12.2020.
 //
+#define POSIX_WS " \t\r\n\v\f"
 
+#include <cstring>
 #include "server.h"
 #include "user.h"
+typedef void FUNC(int num , std::vector<std::string> args, std::vector<user> &users);
+FUNC *functions[] = {server::register_user};
+
+std::string 	g_cmd_list[] =
+        {
+                "NICK", "USER", "QUIT", "JOIN", "PART",
+                "NAMES", "LIST", "TOPIC", "PRIVMSG", "PING"
+        };
+void server::register_user(int num , std::vector<std::string> args, std::vector<user> &users) {
+
+    users[num].to_write = true;
+    std::string reply;
+    if (users[num].nick.size()==0)
+        reply = ":" + users[num].ip +  " Welcome to my IRC server " +  args[1] + "\r\n";
+    else
+        reply = ":" + users[num].ip +  " Nick changed to " +  args[1] + "\r\n";
+    users[num].communicats.push_back(reply);
+    std::cout<<reply<<std::endl;
+}
+
+void server::handle_cmd(int num, char *buff, std::vector<user> &users) {
+    //users[num].to_write = true;
+    char		*token;
+    std::vector<std::string> arg;
+    token = strtok(buff, POSIX_WS);
+    arg.push_back(token);
+    std::cout<<token<<std::endl;
+    while ((token = strtok(NULL, POSIX_WS)) != NULL){
+        arg.push_back(token);
+        //users[num].to_write = true;
+    }
+    int i = 0;
+    std::cout<<arg[0]<<std::endl;
+    while (i<sizeof(g_cmd_list)) {
+        if (g_cmd_list[i] == arg[0])
+            break;
+        i++;
+    }
+    if (i == 0){
+        functions[i](num, arg, users);}
+
+}
 
 int	server::handle_clients( fd_set *fds, fd_set *fds_w, std::vector<user> &users)
 {
@@ -11,33 +55,39 @@ int	server::handle_clients( fd_set *fds, fd_set *fds_w, std::vector<user> &users
     std::cout<<users.size()<<std::endl;
     for (int i = 0 ; i< users.size(); i++)
     {
-
+        if (FD_ISSET(users[i].fd, fds_w))
+        {
+            std::cout<<"test"<<std::endl;
+            std::string ans = ":127.0.0.1 462 ja :Already registered\n";
+            server::send_msg(&(users[i].communicats[0][0]), users[i].fd);
+            if(users[i].communicats.size()>0)
+                users[i].communicats.erase(users[i].communicats.begin());
+            if(users[i].communicats.size()==0)
+                users[i].to_write = false;
+            //close(users[i]);
+        }
         char buff[1024];
-        if (FD_ISSET(users[i].fd, fds))
+        if (FD_ISSET(users[i].fd, fds)&& users[i].to_write == false)
         {
             rd = server::recive_msg(buff, users[i].fd);
+            std::cout<<buff<<std::endl;
             if (rd == 0){
                 shutdown(users[i].fd, SHUT_RDWR);
                 users[i].status = -1;
                 continue;}
-            std::cout<<buff<<std::endl;
+            server::handle_cmd(i, buff, users);
+            //users[i].to_write = true;
 
             if (buff[0] == 'P'){continue;}
-            char ans[] = "%reply :127.0.0.1 001 a Welcome to my IRC server a!a@127.0.0.1.\n \r";
-            server::send_msg(ans, users[i].fd);
+            char ans[] = ":127.0.0.1 462 ja :Already registered\n";
+            //server::send_msg(ans, users[i].fd);
             for (int i =0; i< 1024; i++){
                 buff[i] = 0;
             }
             //close(users[i]);
         }
         //FD_CLR(&fds);
-        if (FD_ISSET(users[i].fd, fds_w))
-        {
-            char ans[] = "%reply :127.0.0.1 001 a Welcome to my IRC server a!a@127.0.0.1.\r";
-            server::send_msg(ans, users[i].fd);
-            users[i].to_write = false;
-            //close(users[i]);
-        }
+
     }
     return (0);
 }
@@ -90,6 +140,7 @@ int	server::accept_new_user(std::vector<user> *users, int g_socket_fd)
     nsock = server::accept_con(g_socket_fd, &r_addr);
     user u = user();
     u.fd = nsock;
+    u.ip = strdup(inet_ntoa(r_addr.sin_addr));
     (*users).push_back(u);
     std::cout<< "Incoming connection from %s"<<inet_ntoa(r_addr.sin_addr)<<std::endl;
 }
@@ -119,17 +170,17 @@ void server::update_fdset(fd_set *fds, fd_set *fds_w,  int *fd_max, std::vector<
     FD_ZERO(fds);
     FD_SET(g_socket_fd, fds);
     FD_ZERO(fds_w);
-    FD_SET(g_socket_fd, fds_w);
+    //FD_SET(g_socket_fd, fds_w);
 
     for (int i = 0 ; i< users.size(); i++)
     {
         FD_SET(users[i].fd, fds);
-        if (users[i].to_write == true)
-            FD_SET(users[i].fd, fds_w);
+        if (users[i].to_write == true){
+            FD_SET(users[i].fd, fds_w);}
         *fd_max = (users[i].fd > *fd_max ? users[i].fd: *fd_max);
 
     }
-    FD_ZERO(fds_w);
+    //FD_ZERO(fds_w);
 }
 
 [[noreturn]] int server::begin_server(int port){
@@ -147,7 +198,7 @@ void server::update_fdset(fd_set *fds, fd_set *fds_w,  int *fd_max, std::vector<
 
 
         server::update_fdset(&fds, &fds_w, &fd_max, users, g_socket_fd);
-        if (select(fd_max + 1, &fds, NULL, NULL, NULL) < 0){
+        if (select(fd_max + 1, &fds, &fds_w, NULL, NULL) < 0){
             std::cout<<"elo"<<std::endl;
             continue;
         }

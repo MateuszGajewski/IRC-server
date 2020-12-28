@@ -28,6 +28,7 @@ public:
     fd_set		fds;
     fd_set  fds_w;
 
+
     [[noreturn]] int begin_server(int port);
 
     static int accept_new_user(std::vector<user> *users, int g_socket_fd);
@@ -42,6 +43,8 @@ public:
     static void send_msg(char * buff, int cfd);
     static int recive_msg(char * buff, int cfd);
     static void del_user(std::vector<user> &users, int ind);
+    static void handle_cmd(int num, char *buff, std::vector<user> &users);
+    static void register_user(int num , std::vector<std::string> args, std::vector<user> &users);
 
 };
 
