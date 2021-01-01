@@ -143,6 +143,33 @@ sk/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sk.dir/build.make CMakeFiles/sk.dir/build
 .PHONY : sk/fast
 
+channel.o: channel.cpp.o
+
+.PHONY : channel.o
+
+# target to build an object file
+channel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sk.dir/build.make CMakeFiles/sk.dir/channel.cpp.o
+.PHONY : channel.cpp.o
+
+channel.i: channel.cpp.i
+
+.PHONY : channel.i
+
+# target to preprocess a source file
+channel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sk.dir/build.make CMakeFiles/sk.dir/channel.cpp.i
+.PHONY : channel.cpp.i
+
+channel.s: channel.cpp.s
+
+.PHONY : channel.s
+
+# target to generate assembly for a file
+channel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sk.dir/build.make CMakeFiles/sk.dir/channel.cpp.s
+.PHONY : channel.cpp.s
+
 communication.o: communication.cpp.o
 
 .PHONY : communication.o
@@ -260,6 +287,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... sk"
+	@echo "... channel.o"
+	@echo "... channel.i"
+	@echo "... channel.s"
 	@echo "... communication.o"
 	@echo "... communication.i"
 	@echo "... communication.s"

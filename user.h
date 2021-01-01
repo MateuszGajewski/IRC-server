@@ -28,7 +28,7 @@ public:
     bool to_write = false;
     int status = 0;
     std::string ip;
-    std::string nick="";
+    std::string nick="-1";
     std::vector<std::string> communicats;
 
 

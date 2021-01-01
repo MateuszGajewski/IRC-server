@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/arabica/IRC-server/channel.cpp">
+			<Option target="sk"/>
+		</Unit>
+		<Unit filename="/home/arabica/IRC-server/channel.h">
+			<Option target="sk"/>
+		</Unit>
 		<Unit filename="/home/arabica/IRC-server/communication.cpp">
 			<Option target="sk"/>
 		</Unit>

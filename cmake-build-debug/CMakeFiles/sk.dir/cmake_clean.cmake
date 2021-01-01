@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/sk.dir/channel.cpp.o"
   "CMakeFiles/sk.dir/communication.cpp.o"
   "CMakeFiles/sk.dir/main.cpp.o"
   "CMakeFiles/sk.dir/server.cpp.o"

@@ -23,6 +23,8 @@
 #include <ctype.h>
 #include <vector>
 #include "user.h"
+#include "channel.h"
+
 class server {
 public:
     fd_set		fds;
@@ -45,6 +47,8 @@ public:
     static void del_user(std::vector<user> &users, int ind);
     static void handle_cmd(int num, char *buff, std::vector<user> &users);
     static void register_user(int num , std::vector<std::string> args, std::vector<user> &users);
+    static void handle_chan(int num , std::vector<std::string> args, std::vector<user> &users);
+    static void privmsg(int num, std::vector<std::string> args, std::vector<user> &users);
 
 };
 

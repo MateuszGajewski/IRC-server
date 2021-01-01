@@ -6,25 +6,90 @@
 #include <cstring>
 #include "server.h"
 #include "user.h"
+#include "channel.h"
+std::vector<channel> channels;
 typedef void FUNC(int num , std::vector<std::string> args, std::vector<user> &users);
-FUNC *functions[] = {server::register_user};
+FUNC *functions[] = {server::register_user, server::handle_chan, server::privmsg};
 
 std::string 	g_cmd_list[] =
         {
                 "NICK", "USER", "QUIT", "JOIN", "PART",
                 "NAMES", "LIST", "TOPIC", "PRIVMSG", "PING"
         };
+
+void ::server::privmsg(int num, std::vector<std::string> args, std::vector<user> &users){
+std::string reply;
+
+reply = :" + users[num].nick + "!" + users[num].nick + "@" + users[num].ip + "PRIVMSG" + args[1] + ":" + args[2] + "\r\n";//":" + users[num].nick + "!" + users[num].nick + "@" + args[2] + "\n";
+
+if((args[1])[0]== '#'){
+        int chan = channel::find_chan_by_name(channels, args[1]);
+        for (int i = 0; i < channels[chan].users.size(); i++){
+
+        if (channels[chan].users[i] != num) {
+            users[channels[chan].users[i]].to_write = true;
+            users[channels[chan].users[i]].communicats.push_back(reply);
+            std::cout<<reply<<std::endl;
+        }
+        }
+    }
+}
+
+void server::handle_chan(int num , std::vector<std::string> args, std::vector<user> &users){
+    std::cout<<"channnnnnnnn"<<std::endl;
+
+    std::string reply;
+    channel::delete_user_from_channels(channels, num);
+    std::cout<<"channnnnnnnn"<<std::endl;
+
+    if(users[num].nick == "-1"){
+        reply = ":" + users[num].ip +  " You are not registered "+ "\n";
+        users[num].communicats.push_back(reply);
+        users[num].to_write = true;
+        return;
+    }
+    int chan = channel::find_chan_by_name(channels, args[1]);
+    if(chan == -1){
+        channel new_chan = channel();
+        new_chan.name = args[1];
+        new_chan.users.push_back(num);
+        channels.push_back(new_chan);
+        std::string reply = ":127.0.0.1 462 ja :New channel "+ args[1]+ "created. Users: " + users[num].nick + "\n";
+        users[num].to_write = true;
+        users[num].communicats.push_back(reply);
+    }
+   else{
+        if (channels[chan].find_user(num) == -1){
+            channels[chan].users.push_back(num);}
+        std::string reply = ":127.0.0.1 462 ja :Channel "+args[1] + ". Users: ";
+        for (int i = 0; i< channels[chan].users.size(); i++){
+            //std::cout<<channels[chan].users[i]->nick<<std::endl;
+            reply += users[channels[chan].users[i]].nick;
+            reply += ",";
+        }
+        reply+="\n";
+        users[num].to_write = true;
+        users[num].communicats.push_back(reply);
+
+    }
+
+
+}
+
+
 void server::register_user(int num , std::vector<std::string> args, std::vector<user> &users) {
 
     users[num].to_write = true;
     std::string reply;
-    if (users[num].nick.size()==0)
+    if (users[num].nick == "-1")
         reply = ":" + users[num].ip +  " Welcome to my IRC server " +  args[1] + "\r\n";
     else
         reply = ":" + users[num].ip +  " Nick changed to " +  args[1] + "\r\n";
     users[num].communicats.push_back(reply);
+    users[num].nick = args[1];
     std::cout<<reply<<std::endl;
 }
+
 
 void server::handle_cmd(int num, char *buff, std::vector<user> &users) {
     //users[num].to_write = true;
@@ -39,13 +104,20 @@ void server::handle_cmd(int num, char *buff, std::vector<user> &users) {
     }
     int i = 0;
     std::cout<<arg[0]<<std::endl;
-    while (i<sizeof(g_cmd_list)) {
-        if (g_cmd_list[i] == arg[0])
-            break;
+    while (i<10) {
+        if (g_cmd_list[i] == arg[0]){
+            break;}
         i++;
     }
     if (i == 0){
         functions[i](num, arg, users);}
+    if (i == 3){
+        functions[1](num, arg, users);
+    }
+
+    if (i == 8){
+        functions[2](num, arg, users);
+    }
 
 }
 
@@ -55,13 +127,15 @@ int	server::handle_clients( fd_set *fds, fd_set *fds_w, std::vector<user> &users
     std::cout<<users.size()<<std::endl;
     for (int i = 0 ; i< users.size(); i++)
     {
-        if (FD_ISSET(users[i].fd, fds_w))
+        if (FD_ISSET(users[i].fd, fds_w) && users[i].to_write == true)
         {
             std::cout<<"test"<<std::endl;
-            std::string ans = ":127.0.0.1 462 ja :Already registered\n";
             server::send_msg(&(users[i].communicats[0][0]), users[i].fd);
-            if(users[i].communicats.size()>0)
+            if(users[i].communicats.size()>0){
+                //delete &users[i].communicats[0];
                 users[i].communicats.erase(users[i].communicats.begin());
+                }
+
             if(users[i].communicats.size()==0)
                 users[i].to_write = false;
             //close(users[i]);
@@ -74,13 +148,12 @@ int	server::handle_clients( fd_set *fds, fd_set *fds_w, std::vector<user> &users
             if (rd == 0){
                 shutdown(users[i].fd, SHUT_RDWR);
                 users[i].status = -1;
+                channel::delete_user_from_channels(channels, i);
+                close(users[i].fd);
                 continue;}
             server::handle_cmd(i, buff, users);
             //users[i].to_write = true;
 
-            if (buff[0] == 'P'){continue;}
-            char ans[] = ":127.0.0.1 462 ja :Already registered\n";
-            //server::send_msg(ans, users[i].fd);
             for (int i =0; i< 1024; i++){
                 buff[i] = 0;
             }
@@ -157,7 +230,7 @@ int server::recive_msg(char * buff, int cfd){
             break;
         }
     }
-    if (rc == 0){std::cout<<"quit"<<std::endl; return 0;}
+    if (rc == 0){std::cout<<"quit"<<std::endl; return 0; }
 }
 void server::update_fdset(fd_set *fds, fd_set *fds_w,  int *fd_max, std::vector<user> &users, int g_socket_fd)
 {

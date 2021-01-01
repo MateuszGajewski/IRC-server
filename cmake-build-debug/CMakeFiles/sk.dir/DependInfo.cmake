@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/arabica/IRC-server/channel.cpp" "/home/arabica/IRC-server/cmake-build-debug/CMakeFiles/sk.dir/channel.cpp.o"
   "/home/arabica/IRC-server/communication.cpp" "/home/arabica/IRC-server/cmake-build-debug/CMakeFiles/sk.dir/communication.cpp.o"
   "/home/arabica/IRC-server/main.cpp" "/home/arabica/IRC-server/cmake-build-debug/CMakeFiles/sk.dir/main.cpp.o"
   "/home/arabica/IRC-server/server.cpp" "/home/arabica/IRC-server/cmake-build-debug/CMakeFiles/sk.dir/server.cpp.o"
