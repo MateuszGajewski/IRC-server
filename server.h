@@ -49,6 +49,9 @@ public:
     static void register_user(int num , std::vector<std::string> args, std::vector<user> &users);
     static void handle_chan(int num , std::vector<std::string> args, std::vector<user> &users);
     static void privmsg(int num, std::vector<std::string> args, std::vector<user> &users);
+    static int find_usr_by_nick(std::string nick, std::vector<user> &users);
+    static void broadcast_nick_to_chan(std::string nick);
+
 
 };
 

@@ -9,10 +9,11 @@
 class channel {
 public:
     std::string name;
-    std::vector<int> users;
+    std::vector<std::string> users;
     static int find_chan_by_name(std::vector<channel> channels, std::string name);
-    int find_user(int usr);
-    static void delete_user_from_channels(std::vector<channel> &channels, int user);
+    int find_user(std::string usr);
+    static void delete_user_from_channels(std::vector<channel> &channels, std::string user);
+    void change_nick(std::string nick);
 
 
 };
