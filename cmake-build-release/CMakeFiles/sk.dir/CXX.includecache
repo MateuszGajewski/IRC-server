@@ -6,15 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/arabica/IRC-server/channel.cpp
-channel.h
-/home/arabica/IRC-server/channel.h
-
 /home/arabica/IRC-server/channel.h
 user.h
 /home/arabica/IRC-server/user.h
-
-/home/arabica/IRC-server/communication.cpp
 
 /home/arabica/IRC-server/communication.h
 sys/types.h
@@ -78,16 +72,6 @@ communication.h
 server.h
 /home/arabica/IRC-server/server.h
 
-/home/arabica/IRC-server/server.cpp
-cstring
--
-server.h
-/home/arabica/IRC-server/server.h
-user.h
-/home/arabica/IRC-server/user.h
-channel.h
-/home/arabica/IRC-server/channel.h
-
 /home/arabica/IRC-server/server.h
 iostream
 -
@@ -127,10 +111,6 @@ user.h
 /home/arabica/IRC-server/user.h
 channel.h
 /home/arabica/IRC-server/channel.h
-
-/home/arabica/IRC-server/user.cpp
-user.h
-/home/arabica/IRC-server/user.h
 
 /home/arabica/IRC-server/user.h
 iostream

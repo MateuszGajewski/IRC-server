@@ -25,9 +25,9 @@
 
 class user {
 public:
-    int fd;
-    bool to_write = false;
-    int status = 0;
+    int fd;                                 //deskryptor
+    bool to_write = false;                  //zmienna informująca o niewysłanych komunikatach do użytkownika
+    int status = 0;                         //czy użytjownik jest aktywny
     std::string ip;
     std::string nick="-1";
     std::vector<std::string> communicats;

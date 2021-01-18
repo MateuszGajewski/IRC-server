@@ -3,6 +3,7 @@
 //
 
 #include "channel.h"
+//Fnkcja służąca do znajdowania kanału o podnej nazwie w wektorze kanałów
 int channel::find_chan_by_name(std::vector<channel> channels, std::string name) {
 
     for (int i =0; i< channels.size(); i++){
@@ -11,6 +12,7 @@ int channel::find_chan_by_name(std::vector<channel> channels, std::string name) 
     }
     return -1;
 }
+//Funkcja służąca do znajdowania użytkownika o podanym nicku w kanale
 int channel::find_user(std::string usr) {
     for (int i =0 ; i< this->users.size();i++){
         if(this->users[i] == usr){
@@ -19,7 +21,7 @@ int channel::find_user(std::string usr) {
     }
     return -1;
 }
-
+//Usuwanie użytkownika z kanału
 void channel::delete_user_from_channels(std::vector<channel> &channels, std::string user) {
     for(int i = 0; i< channels.size(); i++){
         for(int j = 0; j < channels[i].users.size(); j++){
@@ -30,7 +32,7 @@ void channel::delete_user_from_channels(std::vector<channel> &channels, std::str
         }
     }
 }
-
+//Rozgłaszanie zmiany nicka użytkownika
 void channel::change_nick(std::string nick) {
     for(int i =0; i < this->users.size(); i++){
 

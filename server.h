@@ -25,7 +25,7 @@
 #include "user.h"
 #include "channel.h"
 
-//Klasa implementująca serwer IRCs
+//Klasa implementująca serwer IRC
 
 class server {
 public:

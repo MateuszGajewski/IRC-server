@@ -19,8 +19,8 @@
 #include "server.h"
 
 
-int main(){
+int main(int argc, char** argv){
     server s = server();
-    s.begin_server(1234);
+    s.begin_server(atoi(argv[1]));
 
 }

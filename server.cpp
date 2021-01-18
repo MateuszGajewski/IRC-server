@@ -7,54 +7,54 @@
 #include "server.h"
 #include "user.h"
 #include "channel.h"
-std::vector<channel> channels;
-typedef void FUNC(int num , std::vector<std::string> args, std::vector<user> &users);
-FUNC *functions[] = {server::register_user, server::handle_chan, server::privmsg};
+std::vector<channel> channels;          //wektor zawierający kanały znajdujące się na serwerze
+typedef void FUNC(int num , std::vector<std::string> args, std::vector<user> &users);         //definicja typu- funkcji obsługującej komendy
+FUNC *functions[] = {server::register_user, server::handle_chan, server::privmsg};            //tablica wskaźników na funkcje obsługujące komendy
 
 std::string 	g_cmd_list[] =
         {
-                "NICK", "USER", "QUIT", "JOIN", "PART",
-                "NAMES", "LIST", "TOPIC", "PRIVMSG", "PING"
+                "NICK",  "JOIN", "PRIVMSG"
         };
 
+//Wysyłanie wiadomości do wskazanych użytkowników
 void ::server::privmsg(int num, std::vector<std::string> args, std::vector<user> &users){
-std::string reply;
+    std::string reply;
 
-reply = ":" + users[num].nick + "!" + users[num].nick + "@" + users[num].ip + "PRIVMSG " + args[1];//  + " " +args[2] + "\r\n";//":" + users[num].nick + "!" + users[num].nick + "@" + args[2] + "\n";
-for(int i =2; i< args.size(); i++){
-    reply += ' ';
-    reply += args[i];
-}
-reply += '\n';
-if((args[1])[0]== '#'){
-        int chan = channel::find_chan_by_name(channels, args[1]);
-        for (int i = 0; i < channels[chan].users.size(); i++){
-
-        if (channels[chan].users[i] != users[num].nick) {
-            int n = server::find_usr_by_nick(channels[chan].users[i], users);
-            users[n].to_write = true;
-            users[n].communicats.push_back(reply);
-            std::cout<<reply<<std::endl;
-        }
-        }
+    reply = ":" + users[num].nick + "!" + users[num].nick + "@" + users[num].ip + "PRIVMSG " + args[1];
+    for(int i =2; i< args.size(); i++){
+        reply += ' ';
+        reply += args[i];
     }
-else{
-  for (int i = 0; i< users.size(); i++){
-      if (users[i].nick == args[1]){
-          users[i].to_write = true;
-          users[i].communicats.push_back(reply);
-          std::cout<<reply<<std::endl;
-          return;
+    reply += '\n';
+    //Jeśli wiadomośc jest do kanału
+    if((args[1])[0]== '#'){
+            int chan = channel::find_chan_by_name(channels, args[1]);
+            for (int i = 0; i < channels[chan].users.size(); i++){
+
+            if (channels[chan].users[i] != users[num].nick) {
+                int n = server::find_usr_by_nick(channels[chan].users[i], users);
+                users[n].to_write = true;
+                users[n].communicats.push_back(reply);
+                std::cout<<reply<<std::endl;
+            }
+            }
+        }
+    else{
+      for (int i = 0; i< users.size(); i++){
+          if (users[i].nick == args[1]){
+              users[i].to_write = true;
+              users[i].communicats.push_back(reply);
+              std::cout<<reply<<std::endl;
+              return;
+          }
+
       }
-      //reply = ":" + users[num].ip + "0" + users[num].nick + ":User do not exist\n";
-  }
 
+    }
 }
-}
-
+//Tworzenie i dołączanie do kanałów
 void server::handle_chan(int num , std::vector<std::string> args, std::vector<user> &users){
     std::string reply;
-    int n = server::find_usr_by_nick(users[num].nick, users);
     channel::delete_user_from_channels(channels,users[num].nick);
 
     if(users[num].nick == "-1"){
@@ -69,7 +69,7 @@ void server::handle_chan(int num , std::vector<std::string> args, std::vector<us
         new_chan.name = args[1];
         new_chan.users.push_back(users[num].nick);
         channels.push_back(new_chan);
-        std::string reply = ":127.0.0.1 462 ja :New channel "+ args[1]+ "created. Users: " + users[num].nick + "\r\n";
+        std::string reply = ":127.0.0.1 462 ja :New channel "+ args[1]+ " created. Users: " + users[num].nick + "\r\n";
         users[num].to_write = true;
         users[num].communicats.push_back(reply);
     }
@@ -91,7 +91,7 @@ void server::handle_chan(int num , std::vector<std::string> args, std::vector<us
 
 }
 
-
+//Rejestrownie użytkownika- wybieranie nicka i sprawdzanie czy nie jest zajęty- musi być unikalny w skali serwera
 void server::register_user(int num , std::vector<std::string> args, std::vector<user> &users) {
 
     users[num].to_write = true;
@@ -126,9 +126,8 @@ void server::register_user(int num , std::vector<std::string> args, std::vector<
 
 }
 
-
+//Parsowanie komend wysłanych przez klienta
 void server::handle_cmd(int num, char *buff, std::vector<user> &users) {
-    //users[num].to_write = true;
     char		*token;
     std::vector<std::string> arg;
     token = strtok(buff, POSIX_WS);
@@ -147,16 +146,16 @@ void server::handle_cmd(int num, char *buff, std::vector<user> &users) {
     }
     if (i == 0){
         functions[i](num, arg, users);}
-    if (i == 3){
+    if (i == 1){
         functions[1](num, arg, users);
     }
 
-    if (i == 8){
+    if (i == 2){
         functions[2](num, arg, users);
     }
 
 }
-
+//Odbieranie i wysyłanie komunikatów od klientów
 int	server::handle_clients( fd_set *fds, fd_set *fds_w, std::vector<user> &users)
 {
     int rd = 0;
@@ -168,15 +167,16 @@ int	server::handle_clients( fd_set *fds, fd_set *fds_w, std::vector<user> &users
             std::cout<<"test"<<std::endl;
             server::send_msg(&(users[i].communicats[0][0]), users[i].fd);
             if(users[i].communicats.size()>0){
-                //delete &users[i].communicats[0];
                 users[i].communicats.erase(users[i].communicats.begin());
                 }
 
             if(users[i].communicats.size()==0)
                 users[i].to_write = false;
-            //close(users[i]);
         }
         char buff[1024];
+        for (int i =0; i< 1024; i++){
+            buff[i] = 0;
+        }
         if (FD_ISSET(users[i].fd, fds)&& users[i].to_write == false)
         {
             rd = server::recive_msg(buff, users[i].fd);
@@ -188,19 +188,18 @@ int	server::handle_clients( fd_set *fds, fd_set *fds_w, std::vector<user> &users
                 close(users[i].fd);
                 continue;}
             server::handle_cmd(i, buff, users);
-            //users[i].to_write = true;
+
 
             for (int i =0; i< 1024; i++){
                 buff[i] = 0;
             }
-            //close(users[i]);
         }
-        //FD_CLR(&fds);
 
     }
     return (0);
 }
 
+//Wysyłanie wiadomości
 void server::send_msg(char * buff, int cfd){
     int rc = 0;
     while (buff[rc-1] != '\n'){
@@ -209,6 +208,8 @@ void server::send_msg(char * buff, int cfd){
 
 
 }
+
+//Akceptownie połączenia
 int	server::accept_con(int socket_fd, struct sockaddr_in *r_addr)
 {
     socklen_t		addrlen;
@@ -222,6 +223,7 @@ int	server::accept_con(int socket_fd, struct sockaddr_in *r_addr)
     return (out_fd);
 }
 
+//Tworzenie gniazda sieciowego
 int	server::create_s_socket(struct sockaddr_in *sock, int port)
 {
     int	socket_fd;
@@ -240,6 +242,8 @@ int	server::create_s_socket(struct sockaddr_in *sock, int port)
         return (-1);
     return (socket_fd);
 }
+
+//Dodawanie nowego użytkownika
 int	server::accept_new_user(std::vector<user> *users, int g_socket_fd)
 {
     struct sockaddr_in	r_addr;
@@ -255,6 +259,7 @@ int	server::accept_new_user(std::vector<user> *users, int g_socket_fd)
     return 0;
 }
 
+//Odbieranie komunikatów
 int server::recive_msg(char * buff, int cfd){
     int rc =0;
     int r = 1;
@@ -270,6 +275,7 @@ int server::recive_msg(char * buff, int cfd){
     if (rc == 0){std::cout<<"quit"<<std::endl; return 0;}
     return 0;
 }
+//Aktualizaja deskryptorów
 void server::update_fdset(fd_set *fds, fd_set *fds_w,  int *fd_max, std::vector<user> &users, int g_socket_fd)
 {
 
@@ -291,9 +297,8 @@ void server::update_fdset(fd_set *fds, fd_set *fds_w,  int *fd_max, std::vector<
         *fd_max = (users[i].fd > *fd_max ? users[i].fd: *fd_max);
 
     }
-    //FD_ZERO(fds_w);
 }
-
+//Uruchamianie serwera
 int server::begin_server(int port){
 
     int			fd_max, g_socket_fd;
@@ -310,7 +315,6 @@ int server::begin_server(int port){
 
         server::update_fdset(&fds, &fds_w, &fd_max, users, g_socket_fd);
         if (select(fd_max + 1, &fds, &fds_w, NULL, NULL) < 0){
-            std::cout<<"elo"<<std::endl;
             continue;
         }
         if (FD_ISSET(g_socket_fd, &fds))
@@ -320,10 +324,13 @@ int server::begin_server(int port){
     return 0;
 
 }
+
+//usuwanie użytkownika
 void server::del_user(std::vector<user> &users, int ind) {
     users.erase(users.begin()+ind);
 }
 
+//znajdowanie użytkownika
 int server::find_usr_by_nick(std::string nick, std::vector<user> &users){
     for(int i = 0; i< users.size(); i++){
         if (users[i].nick == nick)
@@ -332,8 +339,4 @@ int server::find_usr_by_nick(std::string nick, std::vector<user> &users){
     return -1;
 }
 
-void server::broadcast_nick_to_chan(std::string nick) {
-    for (int i = 0; i< channels.size(); i++){
 
-    }
-}
