@@ -82,6 +82,7 @@ void server::handle_chan(int num , std::vector<std::string> args, std::vector<us
             reply += ",";
         }
         reply+="\n";
+
         users[num].to_write = true;
         users[num].communicats.push_back(reply);
 
@@ -109,11 +110,20 @@ void server::register_user(int num , std::vector<std::string> args, std::vector<
         reply = ":" + users[num].ip +  " Nick changed to " +  args[1] + "\r\n";
 
     }
+
     users[num].communicats.push_back(reply);
+    int chan_num;
+    for(int i = 0; i < channels.size(); i++){
+        if(channels[i].find_user(users[num].nick) != -1){
+            chan_num = channels[i].find_user(users[num].nick);
+            channels[i].users[chan_num] = args[1];
+        }
+    }
+
     users[num].nick = args[1];
     std::cout<<reply<<std::endl;
 
-    
+
 }
 
 
@@ -242,6 +252,7 @@ int	server::accept_new_user(std::vector<user> *users, int g_socket_fd)
     u.ip = strdup(inet_ntoa(r_addr.sin_addr));
     (*users).push_back(u);
     std::cout<< "Incoming connection from %s"<<inet_ntoa(r_addr.sin_addr)<<std::endl;
+    return 0;
 }
 
 int server::recive_msg(char * buff, int cfd){
