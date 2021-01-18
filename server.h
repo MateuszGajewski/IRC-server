@@ -25,13 +25,15 @@
 #include "user.h"
 #include "channel.h"
 
+//Klasa implementująca serwer IRCs
+
 class server {
 public:
     fd_set		fds;
     fd_set  fds_w;
 
 
-    [[noreturn]] int begin_server(int port);
+    int begin_server(int port);
 
     static int accept_new_user(std::vector<user> *users, int g_socket_fd);
 

@@ -21,6 +21,7 @@
 #ifndef SK_USER_H
 #define SK_USER_H
 
+//Klasa implementująca użytkownika kanału IRC
 
 class user {
 public:

@@ -267,7 +267,8 @@ int server::recive_msg(char * buff, int cfd){
             break;
         }
     }
-    if (rc == 0){std::cout<<"quit"<<std::endl; return 0; }
+    if (rc == 0){std::cout<<"quit"<<std::endl; return 0;}
+    return 0;
 }
 void server::update_fdset(fd_set *fds, fd_set *fds_w,  int *fd_max, std::vector<user> &users, int g_socket_fd)
 {
@@ -293,14 +294,14 @@ void server::update_fdset(fd_set *fds, fd_set *fds_w,  int *fd_max, std::vector<
     //FD_ZERO(fds_w);
 }
 
-[[noreturn]] int server::begin_server(int port){
+int server::begin_server(int port){
 
     int			fd_max, g_socket_fd;
     std::vector<user> users;
     struct sockaddr_in	l_addr;
 
     if ((g_socket_fd = server::create_s_socket(&l_addr, port)) == -1)
-        return (-1);
+        return -1;
     listen(g_socket_fd, 10);
     //init_handler(&h, &users, &chans);
     while (1)

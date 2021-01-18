@@ -5,6 +5,7 @@
 #ifndef SK_CHANNEL_H
 #define SK_CHANNEL_H
 
+//Klasa implementująca pojedyńczy kanał serwera IRC
 
 class channel {
 public:
